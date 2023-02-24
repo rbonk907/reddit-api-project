@@ -1,9 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectPosts, fetchPosts } from './postsSlice';
-
-
 import { useEffect } from 'react';
 import styles from './PostList.module.css';
+import Post from './Post';
 
 
 export function PostList() {
@@ -16,15 +15,11 @@ export function PostList() {
     
 
     return (
-        <div>
-            <h1>Post List Goes Here...</h1>
+        <div className={styles.postList}>
             <ul>
                 { Object.values(posts.embedded).map(post => {
                     return (
-                        <li key={post.id}>
-                            <h3>{post.title}</h3>
-                            <p>{post.author}</p>
-                        </li>
+                        <Post key={post.id} post={post} />
                     );
                 })}
             </ul>

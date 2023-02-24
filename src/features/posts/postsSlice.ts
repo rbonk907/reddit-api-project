@@ -3,7 +3,8 @@ import { RootState, AppThunk } from '../../app/store';
 
 export interface PostsState {
     embedded: { [key: string]: { [key: string]: string | boolean | number,
-                                 id: string } };
+                                 id: string,
+                                 selftext: string } };
     isLoading: boolean;
     loadingFailed: boolean;
 }
@@ -16,7 +17,8 @@ const initialState: PostsState = {
 
 export interface ListingChildren {
     data: { [key: string]: string | boolean | number,
-            id: string },
+            id: string,
+            selftext: string },
     kind: string
 }
 
@@ -28,7 +30,7 @@ export const fetchPosts = createAsyncThunk(
     async () => {
         const response = await fetch('https://www.reddit.com/r/embedded.json');
         const json = await response.json();
-
+        console.log(json);
         return json;
     }
 )
@@ -47,9 +49,10 @@ export const postsSlice = createSlice({
                 const posts: ListingChildren[] = action.payload.data.children;
                 posts.forEach(post => {
                     state.embedded[post.data.id] = {
+                        id: post.data.id,
                         author: post.data.author,
                         title: post.data.title,
-                        id: post.data.id,
+                        selftext: post.data.selftext,
                         createdUTC: post.data.created_utc,
                         numOfComments: post.data.num_comments,
                         score: post.data.score,
