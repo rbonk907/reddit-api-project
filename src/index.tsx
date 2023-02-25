@@ -4,23 +4,38 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
+import PostPage from './features/posts/PostPage';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+ 
+
+
+
+
+
+function Index() {
+  
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App />,
+    },
+    {
+      path: "posts/:postID",
+      element: <PostPage />
+    }
+  ])
+
+  return <RouterProvider router={router} />;
+}
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />
-  }
-])
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <Index />
     </Provider>
   </React.StrictMode>
 );

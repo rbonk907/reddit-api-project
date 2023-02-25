@@ -6,7 +6,11 @@
 
 .post {
     list-style: none;
-    cursor: pointer;
+}
+
+.post a {
+    text-decoration: none;
+    color: black;
 }
 
 .postContainer {
@@ -87,8 +91,4 @@
 
 .textPreview li {
     margin: 0.4em 1em;
-}
-
-.textPreview a {
-    pointer-events: none;
 }

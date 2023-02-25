@@ -4,7 +4,8 @@ import { RootState, AppThunk } from '../../app/store';
 export interface PostsState {
     embedded: { [key: string]: { [key: string]: string | boolean | number,
                                  id: string,
-                                 selftext: string } };
+                                 selftext: string,
+                                 title: string } };
     isLoading: boolean;
     loadingFailed: boolean;
 }
@@ -18,7 +19,8 @@ const initialState: PostsState = {
 export interface ListingChildren {
     data: { [key: string]: string | boolean | number,
             id: string,
-            selftext: string },
+            selftext: string,
+            title: string },
     kind: string
 }
 
