@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 
 export interface PostsState {
-    embedded: { [key: string]: { [key: string]: string | boolean | number,
+    posts: { [key: string]: { [key: string]: string | boolean | number,
                                  id: string,
                                  selftext: string,
                                  title: string,
@@ -12,7 +12,7 @@ export interface PostsState {
 }
 
 const initialState: PostsState = {
-    embedded: {},
+    posts: {},
     isLoading: false,
     loadingFailed: false
 }
@@ -61,7 +61,7 @@ export const postsSlice = createSlice({
             .addCase(fetchPosts.fulfilled, (state, action) => {
                 const posts: ListingChildren[] = action.payload.data.children;
                 posts.forEach(post => {
-                    state.embedded[post.data.id] = {
+                    state.posts[post.data.id] = {
                         id: post.data.id,
                         author: post.data.author,
                         title: post.data.title,

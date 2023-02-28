@@ -10,7 +10,7 @@ export function PostList({ posts }: PostListProps) {
     return (
         <div className={styles.postList}>
             <ul>
-                { Object.values(posts.embedded).map(post => {
+                { Object.values(posts.posts).map(post => {
                     return (
                         <Post key={post.id} post={post} />
                     );
