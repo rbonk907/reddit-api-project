@@ -1,0 +1,7 @@
+.commentContainer {
+    max-width: 640px;
+    margin: 0 auto;
+
+    border: 1px solid #CCC;
+    border-radius: 4px;
+}
