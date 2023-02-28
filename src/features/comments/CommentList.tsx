@@ -16,7 +16,11 @@ const displayComment = (comment: Comment, index: number) => {
     }
     ++index;
     const commentList: JSX.Element[] = comment.replies.map(reply => {
-        return displayComment(reply, index);
+        return (
+            <div key={reply.id}>
+                {displayComment(reply, index)}
+            </div>
+        )
             
         
     })
@@ -38,7 +42,13 @@ export default function CommentList({ postID }: CommentListProps) {
     return (
         <div>
             <div>
-                {postComments && postComments.map(comment => displayComment(comment, 0))}
+                {postComments && postComments.map(comment => {
+                   return (
+                    <div key={comment.id}>
+                        {displayComment(comment, 0)}
+                    </div>
+                   ) 
+                })}
             </div>
         </div>
     );
