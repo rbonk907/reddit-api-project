@@ -5,7 +5,8 @@ export interface PostsState {
     embedded: { [key: string]: { [key: string]: string | boolean | number,
                                  id: string,
                                  selftext: string,
-                                 title: string } };
+                                 title: string,
+                                 permalink: string } };
     isLoading: boolean;
     loadingFailed: boolean;
 }
@@ -17,10 +18,20 @@ const initialState: PostsState = {
 }
 
 export interface ListingChildren {
-    data: { [key: string]: string | boolean | number,
+    data: { 
             id: string,
             selftext: string,
-            title: string },
+            title: string,
+            permalink: string,
+            author: string,
+            body: string,
+            created_utc: number,
+            num_comments: number,
+            score: number,
+            thumbnail: string,
+            thumbnail_height: number,
+            thumbnail_width: number,
+            replies: { data: { children: ListingChildren[] } } | "" };
     kind: string
 }
 
@@ -32,7 +43,7 @@ export const fetchPosts = createAsyncThunk(
     async () => {
         const response = await fetch('https://www.reddit.com/r/embedded.json');
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         return json;
     }
 )
@@ -60,7 +71,8 @@ export const postsSlice = createSlice({
                         score: post.data.score,
                         thumbnail: post.data.thumbnail,
                         thumbnailHeight: post.data.thumbnail_height,
-                        thumbnailWidth: post.data.thumbnail_width
+                        thumbnailWidth: post.data.thumbnail_width,
+                        permalink: post.data.permalink
                     };
                 });
                 state.isLoading = false;
