@@ -1,7 +1,7 @@
 import styles from './Post.module.css';
 import { BsChatSquare } from 'react-icons/bs';
 import ReactMarkdown from 'react-markdown';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 interface PostProps {
@@ -15,9 +15,10 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
     const navigate = useNavigate();
+    let location = useLocation();
 
     const handleClick = () => {
-        navigate(`posts/${post.id}`);
+        navigate(`posts/${post.id}`, {state: { backgroundlocation: location }});
     }
     
     return (

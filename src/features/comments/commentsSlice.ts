@@ -61,7 +61,7 @@ export const fetchComments = createAsyncThunk(
         baseURL = baseURL.slice(0, -1);
         const response = await fetch(`https://www.reddit.com${baseURL}.json`);
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         return json;
     }
 )

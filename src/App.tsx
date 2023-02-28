@@ -5,12 +5,11 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { selectPosts, fetchPosts } from './features/posts/postsSlice';
 import { useEffect } from 'react';
 import { AppDispatch } from './app/store';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import PostPage from './features/posts/PostPage';
 
-export const loader = (dispatch: AppDispatch) => {
-  dispatch(fetchPosts);
-}
 
-function App() {
+export default function App() {
   const posts = useAppSelector(selectPosts);
   const dispatch = useAppDispatch();
 
@@ -19,12 +18,21 @@ function App() {
   }, [dispatch]);
   
   return (
-    <div className="App">
-      {/* <header className="App-header">
-      </header> */}
-      <PostList posts={posts}/>
-    </div>
+    
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<PostList posts={posts} />} />
+          <Route path="posts/:postID" element={<PostPage />} />
+        </Route>
+      </Routes>
   );
 }
 
-export default App;
+function Layout() {
+  return (
+    <div className="App">
+      <Outlet />
+    </div>
+  )
+}
+

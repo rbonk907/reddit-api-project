@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.postPage {
+    width: fit-content;
+    height: 100vh;
+    padding: 20px;
+    background-color: #FFF;
+    margin: 0 auto;
+}
+
 .post {
     list-style: none;
 }
@@ -15,13 +23,13 @@
 
 .postContainer {
     width: 640px;
-    max-height: 415px;
+    
     border-radius: 4px;
     background-color: #FFF;
     border: 1px solid #CCC;
 
     padding: 0 20px;
-    margin: 10px auto;
+    margin-top: 10px;
    
 
 }
@@ -60,8 +68,9 @@
 
 .textPreview {
     margin-top: 8px;
-    overflow: hidden;
-    max-height: 265px;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    
     position: relative;
 }
 
@@ -72,7 +81,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    background: linear-gradient(rgba(255, 255, 255, 0) 80%, white);
+    
     pointer-events: none;
 }
 

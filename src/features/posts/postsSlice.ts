@@ -43,7 +43,7 @@ export const fetchPosts = createAsyncThunk(
     async () => {
         const response = await fetch('https://www.reddit.com/r/embedded.json');
         const json = await response.json();
-        // console.log(json);
+        console.log(json);
         return json;
     }
 )

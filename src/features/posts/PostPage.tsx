@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchPosts, selectPosts } from "./postsSlice";
 import styles from './PostPage.module.css';
@@ -14,6 +14,8 @@ export default function PostPage() {
     const posts = useAppSelector(selectPosts);
     const post = postID ? posts.embedded[postID] : null;
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         if(!Object.keys(posts.embedded).length) {
             console.log("Fetching posts...");
@@ -25,9 +27,16 @@ export default function PostPage() {
         
         
     }, [dispatch, posts.embedded, post]);
+
+    const handleBackButton = () => {
+        navigate(-1);
+    }
     
     return (
-        <div>
+        <div className={styles.postPage}>
+            <div className={styles.navigation}>
+                <button onClick={handleBackButton}>Go Back</button>
+            </div>
             <div className={styles.postContainer}>
                 <div className={styles.postPreview}>
                     <span>Posted by u/{post?.author}</span>
