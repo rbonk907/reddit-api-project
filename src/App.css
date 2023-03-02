@@ -1,5 +1,8 @@
 .App {
-  background-color: #DAE0E6;
+  background-color: #cad8e7;
+  height: 100%;
+
+  
 }
 
 .App-logo {
@@ -13,27 +16,64 @@
   }
 }
 
-.App-header {
-  min-height: 100vh;
+aside {
+  width: var(--sideBarWidth);
+  height: calc(100vh - 50px);
+  position: fixed;
+  top: 50px;
+  background-color: #FFF;
+  clear: none;
+}
+
+.feeds {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 16px 24px 8px;
+}
+
+.postSection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  margin-left: var(--sideBarWidth);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.subredditLink a {
+  display: block;
+  text-decoration: none;
+  color: black;
+
+  font-size: 14px;
+
+  padding: 5px;
+  padding-left: 20px;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.subredditLink a:first-of-type {
+  margin-bottom: 18px;
 }
+
+.subredditLink a:hover {
+  background-color: #E5E6E7;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+}
+
+.home svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid #E5E6E7;
+  margin-bottom: 8px;
+}
+
+
