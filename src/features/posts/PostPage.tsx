@@ -12,12 +12,12 @@ export default function PostPage() {
     const dispatch = useAppDispatch();
     const { postID } = useParams();
     const posts = useAppSelector(selectPosts);
-    const post = postID ? posts.posts[postID] : null;
+    const post = postID ? posts[postID] : null;
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!Object.keys(posts.posts).length) {
+        if(!Object.keys(posts).length) {
             console.log("Fetching posts...");
             dispatch(fetchPosts());
         }
@@ -26,7 +26,7 @@ export default function PostPage() {
         post && dispatch(fetchComments(post.permalink))
         
         
-    }, [dispatch, posts.posts, post]);
+    }, [dispatch, posts, post]);
 
     const handleBackButton = () => {
         navigate(-1);
