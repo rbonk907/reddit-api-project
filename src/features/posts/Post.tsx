@@ -1,6 +1,7 @@
 import styles from './Post.module.css';
 import { BsChatSquare } from 'react-icons/bs';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -22,14 +23,14 @@ export default function Post({ post }: PostProps) {
     }
     
     return (
-        <li className={styles.post} onClick={handleClick}>
+        <li className={`${styles.post} ${styles.boxShadow}`} onClick={handleClick}>
             
                 <div className={styles.postContainer}>
                     <div className={styles.postPreview}>
                         <span>Posted by u/{post.author}</span>
                         <h3><ReactMarkdown>{post.title}</ReactMarkdown></h3>
                         <div className={styles.textPreview}>
-                            <ReactMarkdown>{post.selftext}</ReactMarkdown>
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.selftext}</ReactMarkdown>
                         </div>
                     </div>
                     <div className={styles.commentBar}>
