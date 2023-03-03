@@ -40,8 +40,8 @@ export interface ListingChildren {
  */
 export const fetchPosts = createAsyncThunk(
     'posts/fetchPosts',
-    async () => {
-        const response = await fetch('https://www.reddit.com/r/embedded.json');
+    async (subreddit: string) => {
+        const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
         const json = await response.json();
         console.log(json);
         return json;
