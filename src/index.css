@@ -1,6 +1,8 @@
 :root {
   --sideBarWidth: 300px;
 
+  --background-color: #cad8e7;
+
   --shadow-color: 212deg 20% 52%;
   --shadow-elevation-high:
     0px 0.2px 0.2px hsl(var(--shadow-color) / 0.3),

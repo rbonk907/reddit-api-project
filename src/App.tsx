@@ -17,21 +17,31 @@ export default function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-      dispatch(fetchPosts());
-  }, [dispatch]);
+      dispatch(fetchPosts('embedded'));
+  }, []);
   
   return (
     
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<PostList posts={posts} />} />
-          <Route path="posts/:postID" element={<PostPage />} />
+          <Route path=":subreddit/" element={<PostList posts={posts} />} />
+          <Route path=":subreddit/" element={<PostList posts={posts} />} />
+          <Route path=":subreddit/" element={<PostList posts={posts} />} />
+          <Route path=":subreddit/" element={<PostList posts={posts} />} />
         </Route>
+        <Route path=":subreddit/posts/:postID" element={<PostPage />} />
       </Routes>
   );
 }
 
 function Layout() {
+  const dispatch = useAppDispatch();
+
+  const handleNavClick = (subreddit: string) => {
+    dispatch(fetchPosts(subreddit));
+  }
+  
   return (
     <div className="App">
       <Header />
@@ -45,10 +55,14 @@ function Layout() {
             </div>
           </NavLink>
           <div className='line'></div>
-          <NavLink to="/" >r/C_Programming</NavLink>
-          <NavLink to="/" >r/computerarchitecture</NavLink>
-          <NavLink to="/" >r/ECE</NavLink>
-          <NavLink to="/" >r/embedded</NavLink>
+          <NavLink 
+            to="C_Programming/"
+            onClick={() => handleNavClick('C_Programming')} >
+            r/C_Programming
+          </NavLink>
+          <NavLink to="computerarchitecture/" >r/computerarchitecture</NavLink>
+          <NavLink to="ECE/" >r/ECE</NavLink>
+          <NavLink to="embedded/" >r/embedded</NavLink>
         </div>
       </aside>
       <div className="postSection">

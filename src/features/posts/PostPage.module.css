@@ -5,21 +5,22 @@
 }
 
 .postPage {
-    width: fit-content;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     padding: 20px;
-    background-color: #FFF;
+    background-color: var(--background-color);
     margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.post {
-    list-style: none;
+.navigation {
+    align-self: flex-start;
+    margin-left: var(--sideBarWidth);
 }
 
-.post a {
-    text-decoration: none;
-    color: black;
-}
 
 .postContainer {
     width: 640px;
@@ -27,6 +28,7 @@
     border-radius: 4px;
     background-color: #FFF;
     border: 1px solid #CCC;
+    border-bottom: none;
 
     padding: 0 20px;
     margin-top: 10px;
@@ -100,4 +102,10 @@
 
 .textPreview li {
     margin: 0.4em 1em;
+}
+
+.textPreview pre {
+    background-color: #F6F7F8;
+    overflow-x: scroll;
+    padding: 8px;
 }

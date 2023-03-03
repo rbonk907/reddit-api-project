@@ -1,5 +1,5 @@
 .App {
-  background-color: #cad8e7;
+  background-color: var(--background-color);
   height: 100%;
 
   

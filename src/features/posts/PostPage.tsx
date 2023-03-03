@@ -10,7 +10,7 @@ import CommentList from "../comments/CommentList";
 
 export default function PostPage() {
     const dispatch = useAppDispatch();
-    const { postID } = useParams();
+    const { subreddit, postID } = useParams();
     const posts = useAppSelector(selectPosts);
     const post = postID ? posts[postID] : null;
 
@@ -19,7 +19,7 @@ export default function PostPage() {
     useEffect(() => {
         if(!Object.keys(posts).length) {
             console.log("Fetching posts...");
-            dispatch(fetchPosts());
+            subreddit && dispatch(fetchPosts(subreddit));
         }
 
         
