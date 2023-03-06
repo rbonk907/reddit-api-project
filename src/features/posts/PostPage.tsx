@@ -10,7 +10,7 @@ import CommentList from "../comments/CommentList";
 
 export default function PostPage() {
     const dispatch = useAppDispatch();
-    const { subreddit, postID } = useParams();
+    const { subreddit, filter, postID } = useParams();
     const posts = useAppSelector(selectPosts);
     const post = postID ? posts[postID] : null;
 
@@ -19,7 +19,8 @@ export default function PostPage() {
     useEffect(() => {
         if(!Object.keys(posts).length) {
             console.log("Fetching posts...");
-            subreddit && dispatch(fetchPosts(subreddit));
+            subreddit && filter && 
+            dispatch(fetchPosts({name: subreddit, filter: filter}));
         }
 
         
@@ -48,7 +49,7 @@ export default function PostPage() {
                 <div className={styles.commentBar}>
                     <div className={styles.comments}>
                         <BsChatSquare />
-                        <span>{post?.numOfComments} Comments</span>
+                        <span>{post?.num_comments} Comments</span>
                     </div>
                 </div>
             </div>

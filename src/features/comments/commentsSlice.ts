@@ -5,7 +5,7 @@ import { ListingChildren } from '../posts/postsSlice';
 export interface Comment {
     id: string;
     author: string;
-    body: string;
+    body?: string;
     createdAt: number;
     replies: Comment[] | null;
 }

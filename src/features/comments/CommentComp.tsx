@@ -11,9 +11,12 @@ export default function CommentComp({ comment, index }: CommentCompProps) {
     
     return (
             <div className={styles.commentContainer}>
-                <div style={{paddingLeft: 16 + index*21}}>
-                    <p>{comment.author}</p>
-                    <p>{comment.body}</p>
+                
+                <div 
+                  
+                  className={styles.commentBody} >
+                    <p className={styles.author}>{comment.author}</p>
+                    <p className={styles.bodyText}>{comment.body}</p>
                 </div>
             </div>
     );

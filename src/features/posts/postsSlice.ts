@@ -2,11 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 
 export interface PostsState {
-    posts: { [key: string]: { [key: string]: string | boolean | number,
-                                 id: string,
-                                 selftext: string,
-                                 title: string,
-                                 permalink: string } };
+    posts: { [key: string]: ListingChildren["data"] };
     isLoading: boolean;
     loadingFailed: boolean;
 }
@@ -24,14 +20,17 @@ export interface ListingChildren {
             title: string,
             permalink: string,
             author: string,
-            body: string,
+            body?: string,
             created_utc: number,
             num_comments: number,
             score: number,
             thumbnail: string,
             thumbnail_height: number,
             thumbnail_width: number,
-            replies: { data: { children: ListingChildren[] } } | "" };
+            post_hint: string,
+            url?: string,
+            media?: {[key: string]: {}} | null,
+            replies?: { data: { children: ListingChildren[] } } | "" };
     kind: string
 }
 
@@ -40,8 +39,9 @@ export interface ListingChildren {
  */
 export const fetchPosts = createAsyncThunk(
     'posts/fetchPosts',
-    async (subreddit: string) => {
-        const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
+    async (subreddit: {name: string, filter: string}) => {
+        const { name, filter } = subreddit;
+        const response = await fetch(`https://www.reddit.com/r/${name}/${filter}.json`);
         const json = await response.json();
         console.log(json);
         return json;
@@ -60,21 +60,26 @@ export const postsSlice = createSlice({
             })
             .addCase(fetchPosts.fulfilled, (state, action) => {
                 const posts: ListingChildren[] = action.payload.data.children;
+                const tempObj : PostsState['posts'] = {};
                 posts.forEach(post => {
-                    state.posts[post.data.id] = {
+                    tempObj[post.data.id] = {
                         id: post.data.id,
                         author: post.data.author,
                         title: post.data.title,
                         selftext: post.data.selftext,
-                        createdUTC: post.data.created_utc,
-                        numOfComments: post.data.num_comments,
+                        created_utc: post.data.created_utc,
+                        num_comments: post.data.num_comments,
                         score: post.data.score,
                         thumbnail: post.data.thumbnail,
-                        thumbnailHeight: post.data.thumbnail_height,
-                        thumbnailWidth: post.data.thumbnail_width,
-                        permalink: post.data.permalink
+                        thumbnail_height: post.data.thumbnail_height,
+                        thumbnail_width: post.data.thumbnail_width,
+                        permalink: post.data.permalink,
+                        media: post.data.media,
+                        post_hint: post.data.post_hint,
+                        url: post.data.url ? post.data.url : '',
                     };
                 });
+                state.posts = tempObj;
                 state.isLoading = false;
                 state.loadingFailed = false;
             })

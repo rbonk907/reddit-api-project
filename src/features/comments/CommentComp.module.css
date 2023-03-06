@@ -1,7 +1,43 @@
 .commentContainer {
     max-width: 640px;
-    margin: 0 auto;
+    
 
-    border: 1px solid #CCC;
-    border-radius: 4px;
+    background-color: #FFF;
+    
 }
+
+.commentBody {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    padding-top: 20px;
+}
+
+.author {
+    font-size: 12px;
+    font-weight: 500;
+    position: relative;
+    padding-left: 28px;
+}
+
+.bodyText {
+    padding-left: 26px;
+    border-left: 2px solid #CCC;
+}
+
+.author::before {
+    background-image: url(https://www.redditstatic.com/avatars/defaults/v2/avatar_default_3.png);
+    background-size: 28px 28px;
+    position: absolute;
+    z-index: 99;
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    content: "";
+    border-radius: 50%;
+    left: -13px;
+    top: -8px;
+}
+
+/* .commentBody {
+    border-left: 2px solid #CCC;
+} */
