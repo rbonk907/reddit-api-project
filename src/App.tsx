@@ -13,24 +13,18 @@ import { BsHouseDoor } from 'react-icons/bs';
 
 
 export default function App() {
-  const posts = useAppSelector(selectPosts);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-      dispatch(fetchPosts({name: 'embedded', filter: 'hot'}));
-  }, []);
+  
   
   return (
     
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<PostList posts={posts} />} />
-          <Route path=":subreddit/:filter/" element={<PostList posts={posts} />} />
-          <Route path=":subreddit/:filter/" element={<PostList posts={posts} />} />
-          <Route path=":subreddit/:filter/" element={<PostList posts={posts} />} />
-          <Route path=":subreddit/:filter/" element={<PostList posts={posts} />} />
+          <Route index element={<PostList />} />
+          <Route path=":subreddit/:filter/" element={<PostList />} />
+          <Route path=":subreddit/" element={<PostList />} />
         </Route>
         <Route path=":subreddit/:filter/posts/:postID" element={<PostPage />} />
+        <Route path=":subreddit/posts/:postID" element={<PostPage />} />
       </Routes>
   );
 }
@@ -58,25 +52,25 @@ function Layout() {
           </NavLink>
           <div className='line'></div>
           <NavLink 
-            to="C_Programming/hot/"
+            to="C_Programming"
             onClick={() => handleNavClick('C_Programming', 'hot')} 
             className={({ isActive }) => isActive ? "linkActive" : undefined} >
             r/C_Programming
           </NavLink>
           <NavLink 
-            to="computerarchitecture/hot/"
+            to="computerarchitecture"
             onClick={() => handleNavClick('computerarchitecture', 'hot')} 
             className={({ isActive }) => isActive ? "linkActive" : undefined} >
             r/computerarchitecture
           </NavLink>
           <NavLink 
-            to="ECE/hot/"
+            to="ECE"
             onClick={() => handleNavClick('ECE', 'hot')} 
             className={({ isActive }) => isActive ? "linkActive" : undefined} >
             r/ECE
           </NavLink>
           <NavLink 
-            to="embedded/hot/"
+            to="embedded"
             onClick={() => handleNavClick('embedded', 'hot')} 
             className={({ isActive }) => isActive ? "linkActive" : undefined} >
             r/embedded
