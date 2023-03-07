@@ -44,7 +44,7 @@ export default function CommentList({ postID }: CommentListProps) {
     const postComments = postID ? comments.comments[postID] : [];
 
     return (
-        <div className={styles.commentList}>
+        <div className={`${styles.commentList} ${styles.boxShadow}`}>
             <div>
                 {postComments && postComments.map(comment => {
                    return (

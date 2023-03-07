@@ -99,13 +99,21 @@
     pointer-events: none;
 }
 
+.textPreview pre {
+    background-color: #F6F7F8;
+    overflow-x: scroll;
+    padding: 8px;
+}
+
 .imageContainer img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
 }
 
 .imageContainer {
-    max-height: 512px;
+    height: 512px;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .boxShadow {

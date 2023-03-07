@@ -1,9 +1,10 @@
 import styles from './PostList.module.css';
 import Post from './Post';
-import { PostsState, selectPostsLoading } from './postsSlice';
-import { useAppSelector } from '../../app/hooks';
+import { fetchPosts, PostsState, selectPosts, selectPostsLoading } from './postsSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { BsChatSquare } from 'react-icons/bs';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 interface PostListProps {
     posts: PostsState["posts"]
@@ -29,12 +30,25 @@ const displayPosts = (isLoading: boolean, posts: PostsState["posts"]) => {
     return postsArray;
 }
 
-export default function PostList({ posts }: PostListProps) {
+export default function PostList() {
     const isLoading = useAppSelector(selectPostsLoading);
-    
+    const posts = useAppSelector(selectPosts);
+    const dispatch = useAppDispatch();
+    const { subreddit, filter } = useParams();
+
+    // useEffect(() => {
+    //     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    // })
+
     useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    })
+        if (subreddit && !filter) {
+            dispatch(fetchPosts({name: subreddit, filter: 'hot'}));
+        } else if (subreddit && filter) {
+            dispatch(fetchPosts({name: subreddit, filter: filter}));
+        } else {
+            dispatch(fetchPosts({name: 'embedded', filter: 'hot'}));
+        }
+    }, [dispatch, subreddit, filter])
    
     return (
         <div className={styles.postList}>

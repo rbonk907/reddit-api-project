@@ -29,10 +29,9 @@ export default function Post({ post }: PostProps) {
                         <h3><ReactMarkdown>{post.title}</ReactMarkdown></h3>
                         <div className={hasImage ? `${styles.textPreview} ${styles.imagePreview}` : `${styles.textPreview}`}>
                             <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.selftext}</ReactMarkdown>
-                            <div className={styles.imageContainer}>
+                            <div className={ hasImage ? styles.imageContainer : ''}>
                                 { hasImage ? <img src={post.url} alt="Post" /> : ''}
                             </div>
-                            
                         </div>
                     </div>
                     <div className={styles.commentBar}>

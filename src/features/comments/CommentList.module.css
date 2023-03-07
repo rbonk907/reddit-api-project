@@ -9,3 +9,7 @@
 .commentThread {
     border-left: 2px solid #CCC;
 }
+
+.boxShadow {
+    box-shadow: var(--shadow-elevation-high);
+}

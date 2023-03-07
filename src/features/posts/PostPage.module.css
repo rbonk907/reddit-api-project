@@ -21,6 +21,25 @@
     margin-left: var(--sideBarWidth);
 }
 
+.navigation button {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid #CCC;
+    color: #FFF;
+    background-color: #0279D1;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navigation button svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+}
+
 
 .postContainer {
     width: 640px;
@@ -108,4 +127,19 @@
     background-color: #F6F7F8;
     overflow-x: scroll;
     padding: 8px;
+}
+
+.imageContainer img {
+    width: auto;
+    max-height: 100%;
+}
+
+.imageContainer {
+    height: 512px;
+    width: fit-content; 
+    margin: 0 auto;  
+}
+
+.boxShadow {
+    box-shadow: var(--shadow-elevation-high);
 }
