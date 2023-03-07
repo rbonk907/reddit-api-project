@@ -1,0 +1,15 @@
+.commentList {
+    margin-top: 20px;
+    padding: 20px;
+    padding-left: 32px;
+    width: 640px;
+    background-color: #fff;
+}
+
+.commentThread {
+    border-left: 2px solid #CCC;
+}
+
+.boxShadow {
+    box-shadow: var(--shadow-elevation-high);
+}

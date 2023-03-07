@@ -1,0 +1,49 @@
+
+
+.filterBar {
+    width: 640px;
+    height: 60px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    background-color: #FFF;
+
+    margin-top: 20px;
+
+
+    display: flex;
+    align-items: center;
+}
+
+.filterBar a {
+    text-decoration: none;
+    font-weight: 700;
+    color: black;
+    padding: 6px 8px;
+    padding-right: 10px;
+    margin-right: 8px;
+    border-radius: 20px;
+
+    display: flex;
+}
+
+.filterBar a:hover {
+    background-color: #E5E6E7;
+}
+
+.icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.icon {
+    padding-right: 8px;
+}
+
+.boxShadow {
+    box-shadow: var(--shadow-elevation-high);
+}
+
+.linkActive {
+    color: #0279D1 !important;
+    background-color: #ebecee;
+}
