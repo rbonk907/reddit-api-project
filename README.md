@@ -2,6 +2,8 @@
 
 A Frontend that uses the Reddit API to grab posts related to Computing Systems for your viewing pleasure!
 
+![Preview of the site loading](./public/reddit-preview-gif.gif)
+
 ## Technologies used
 
 This app was built with **React**, **Redux**, and **Typescript**
